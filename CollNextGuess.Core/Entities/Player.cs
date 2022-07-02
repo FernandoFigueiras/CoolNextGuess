@@ -1,6 +1,6 @@
 ﻿namespace CollNextGuess.Core.Entities
 {
-    public class Player
+    public class Player : IEntity
     {
         public Player(string name, int turn, int points)
         {
@@ -8,6 +8,9 @@
             Turn = turn;
             Points = points;
         }
+
+        public int Id { get; set; }
+
         public string? Name { get; set; }
 
         public int Turn { get; set; } = 0;
