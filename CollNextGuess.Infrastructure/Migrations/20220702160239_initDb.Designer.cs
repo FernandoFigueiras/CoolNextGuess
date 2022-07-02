@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CollNextGuess.Infrastructure.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220702150137_InitDb")]
-    partial class InitDb
+    [Migration("20220702160239_initDb")]
+    partial class initDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

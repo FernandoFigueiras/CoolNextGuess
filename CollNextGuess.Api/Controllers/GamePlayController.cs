@@ -12,10 +12,10 @@ namespace CollNextGuess.Api.Controllers
     public class GamePlayController : Controller
     {
         private readonly IMediator _mediator;
-        private readonly IGameRegisterModel _gameRegisterModel;
+        private readonly INewGameModel _gameRegisterModel;
 
         public GamePlayController(IMediator mediator,
-            IGameRegisterModel gameRegisterModel)
+            INewGameModel gameRegisterModel)
         {
             _mediator = mediator;
             this._gameRegisterModel = gameRegisterModel;
@@ -24,20 +24,20 @@ namespace CollNextGuess.Api.Controllers
         /// <summary>
         /// Used to pass the model necessary for the UI
         /// </summary>
-        /// <returns>player name and numer of players</returns>
+        /// <returns>Enter number of players to start a new game</returns>
         [HttpGet]
-        public IGameRegisterModel CreateNewGame()
+        public INewGameModel CreateNewGame()
         {
             return this._gameRegisterModel;
         }
 
         /// <summary>
-        /// initializes the game
+        /// Initializes the game
         /// </summary>
         /// <param name="model">model with player name and number of players</param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> CreateNewGame([FromBody]GameRegisterModel model)
+        public async Task<IActionResult> CreateNewGame([FromBody]NewGameModel model)
         {
             if (!ModelState.IsValid)
             {
