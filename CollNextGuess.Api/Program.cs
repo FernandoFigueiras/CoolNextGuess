@@ -1,3 +1,4 @@
+using CollNextGuess.Api.ServiceExtensions;
 using CollNextGuess.Infrastructure;
 using MediatR;
 
@@ -10,6 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(typeof(MediatREntryPoint).Assembly);
+builder.Services.AddModels();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="10.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="6.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.6">
@@ -25,9 +26,11 @@
 
   <ItemGroup>
     <Folder Include="Dal\" />
-    <Folder Include="MediatR\Command\" />
-    <Folder Include="MediatR\Handler\" />
     <Folder Include="MediatR\Query\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CollNextGuess.Core\CollNextGuess.Core.csproj" />
   </ItemGroup>
 
 </Project>
