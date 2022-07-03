@@ -14,7 +14,7 @@ services:
     ports:
     - "8000:80"
     environment:
-     DB_CONNECTION_STRING: "host=postgres_image;port=5432;database=CollNextGuess;username=app_user;password=1!@Pal4t0&96"
+     DB_CONNECTION_STRING: "host=postgres_image;port=5432;database=CollNextGuess;username=app_user;password=1234appuser"
     networks:
     - dockerapi-dev
 
@@ -29,6 +29,19 @@ services:
     POSTGRES_USER: "app_user"
     POSTGRES_PASSWORD: "appuserpass"
     POSTGRES_DB: "VBoxBkdTest"
-
+  
+  #pgadmin:
+  #  image: dpage/pgadmin4
+  #  environment:
+  #    - PGADMIN_DEFAULT_EMAIL=postgres
+  #    - PGADMIN_DEFAULT_PASSWORD=1!@Pal4t0&96
+  #  ports:
+  #    - "5050:80"
+  #  restart: always
+  #  volumes:
+  #    - pgadmin:/root/.pgadmin
+  #  networks:
+  #    - dockerapi-dev
 volumes:
  db_volume:
+ #pgadmin:

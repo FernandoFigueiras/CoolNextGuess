@@ -1,5 +1,6 @@
 ﻿using CollNextGuess.Core.Entities;
 using CollNextGuess.Core.Models.Responses.Interfaces;
+using CollNextGuess.Infrastructure.Dal.PostgresSql.Repositories.GamePlays.Write;
 using CollNextGuess.Infrastructure.MediatR.Command.GameRegister;
 using CollNextGuess.Infrastructure.Response;
 using CollNextGuess.Infrastructure.Services.BuildDeckService;
@@ -13,12 +14,15 @@ namespace CollNextGuess.Infrastructure.MediatR.Handler
     {
         private readonly ILogger<GameRegisterCommandHandler> _logger;
         private readonly INewGameResponseModel _newGameResponseModel;
+        private readonly IWriteGamePlayRepository _writeGamePlayRepository;
 
         public GameRegisterCommandHandler(ILogger<GameRegisterCommandHandler> logger,
-            INewGameResponseModel newGameResponseModel)
+            INewGameResponseModel newGameResponseModel,
+            IWriteGamePlayRepository writeGamePlayRepository)
         {
             _logger = logger;
             this._newGameResponseModel = newGameResponseModel;
+            this._writeGamePlayRepository = writeGamePlayRepository;
         }
 
         public async Task<GenericResponse> Handle(GameRegisterCommand request, CancellationToken cancellationToken)
@@ -51,7 +55,7 @@ namespace CollNextGuess.Infrastructure.MediatR.Handler
                     response.Message = "Could not create GamePLay";
                 }
                 response.IsValid = true;
-
+                await _writeGamePlayRepository.InsertAsync(GamePlay);
                 response.Message = $"Game on, first card is {GamePlay.GameCard.Rank} of {GamePlay.GameCard.Suit} and the first to play is {GamePlay.SetActivePLayer().Name}";
                 _newGameResponseModel.CurrentRound = GamePlay.CurrentRound.ToString();
                 _newGameResponseModel.IsMultiPlayer = GamePlay.IsMultiPlayer.ToString();

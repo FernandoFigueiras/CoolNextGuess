@@ -3,6 +3,7 @@ using CollNextGuess.Infrastructure;
 using CollNextGuess.Infrastructure.Dal.PostgresSql;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Npgsql;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,13 +19,11 @@ builder.Services.AddModels();
 builder.Services.AddReadRepositories();
 builder.Services.AddWriteRepositories();
 builder.Services.AddInternalServices();
-var connectionString = builder.Configuration["PostgreSql:ConnectionString"];
-var dbPassword = builder.Configuration["PostgreSql:DbPassword"];
-var postGresBuilder = new NpgsqlConnectionStringBuilder(connectionString)
+
+builder.Services.AddDbContext<DataContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"), builder =>
 {
-    Password = dbPassword
-};
-builder.Services.AddDbContext<DataContext>(options => options.UseNpgsql(postGresBuilder.ConnectionString));
+    builder.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
+}));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
