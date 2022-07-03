@@ -15,6 +15,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(typeof(MediatREntryPoint).Assembly);
 builder.Services.AddModels();
+builder.Services.AddReadRepositories();
+builder.Services.AddWriteRepositories();
+builder.Services.AddInternalServices();
 var connectionString = builder.Configuration["PostgreSql:ConnectionString"];
 var dbPassword = builder.Configuration["PostgreSql:DbPassword"];
 var postGresBuilder = new NpgsqlConnectionStringBuilder(connectionString)

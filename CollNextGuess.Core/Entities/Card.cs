@@ -1,9 +1,7 @@
 ﻿namespace CollNextGuess.Core.Entities
 {
-    public class Card : IEntity
+    public class Card
     {
-        public int Id { get; set; }
-
         public string? Suit { get; set; }
 
         public string? Rank { get; set; }

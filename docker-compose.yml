@@ -14,7 +14,7 @@ services:
     ports:
     - "8000:80"
     environment:
-     DB_CONNECTION_STRING: "host=postgres_image;port=5432;database=VBoxBkdTest;username=app_user;password=1!@Pal4t0&96"
+     DB_CONNECTION_STRING: "host=postgres_image;port=5432;database=CollNextGuess;username=app_user;password=1!@Pal4t0&96"
     networks:
     - dockerapi-dev
 

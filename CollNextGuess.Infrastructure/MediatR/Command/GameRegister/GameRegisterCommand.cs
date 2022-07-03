@@ -4,5 +4,5 @@ using MediatR;
 
 namespace CollNextGuess.Infrastructure.MediatR.Command.GameRegister
 {
-    public record GameRegisterCommand(NewGameModel model) : IRequest<GenericResponse>;
+    public record GameRegisterCommand(NewGameRequestModel model) : IRequest<GenericResponse>;
 }
