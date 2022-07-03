@@ -6,14 +6,12 @@ namespace CollNextGuess.Infrastructure.Dal.PostgresSql.Configurations
 {
     public class GamePlayConfiguration : IEntityTypeConfiguration<GamePlay>
     {
-        public void Configure(EntityTypeBuilder<GamePlay> playerBuilder)
+        public void Configure(EntityTypeBuilder<GamePlay> gamePlayBuilder)
         {
-            playerBuilder.Property(gamePlay => gamePlay.GetType())
-                .IsRequired()
-                .HasMaxLength(10);
-            playerBuilder.Property(gamePlay => gamePlay.NumberOfPlayers)
+            gamePlayBuilder.Property(gamePlay => gamePlay.NumberOfPlayers)
                 .IsRequired()
                 .HasMaxLength(4);
+            gamePlayBuilder.Ignore(gamePlayBuilder => gamePlayBuilder.GameCard);
         }
     }
 }

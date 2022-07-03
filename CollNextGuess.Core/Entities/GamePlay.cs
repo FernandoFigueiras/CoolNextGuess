@@ -7,8 +7,11 @@ namespace CollNextGuess.Core.Entities
     {
         public int Id { get; set; }
 
-        public GamePlay(int numberOfPLayers, List<string> players) : base(numberOfPLayers, players)
+        private List<string> _playerNames;
+
+        public GamePlay(int numberOfPlayers, List<string> playerNames) : base(numberOfPlayers, playerNames)
         {
+            this._playerNames = playerNames;
             this.Players = base.Players;
             this.IsMultiPlayer = base.IsMultiPlayer;
             this.NumberOfPlayers = base.NumberOfPlayers;
@@ -17,6 +20,15 @@ namespace CollNextGuess.Core.Entities
             this.InGameCardDeck = GetInGameCardDeck(GameCard);
             this.CurrentRound = SetCurrentRound();
         }
+
+        public string DeckAtPlay { get; set; }
+
+        public List<string> PlayerNames
+        {
+            get { return _playerNames; }
+            set { _playerNames = value; }
+        }
+
 
         public InGameCardDeck GetInGameCardDeck(Card cardGame)
         {

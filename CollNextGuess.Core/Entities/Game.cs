@@ -1,4 +1,5 @@
 ﻿using CollNextGuess.Core.Enums;
+using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CollNextGuess.Core.Entities
@@ -19,13 +20,20 @@ namespace CollNextGuess.Core.Entities
 
         public int Id { get; set; }
 
-        public  bool IsMultiPlayer { get;  set; }
+        public bool IsMultiPlayer { get; set; }
 
-        public  int NumberOfPlayers { get;  set; }
-        
-        public  bool IsActive { get; set; } = true;
+        public int NumberOfPlayers { get; set; }
 
+        public bool IsActive { get; set; } = true;
+
+        [NotMapped]
         public Card? GameCard { get; set; }
+
+        public List<string> PlayerNames
+        {
+            get { return _playerNames; }
+            set { _playerNames = value; }
+        }
 
         public  List<Player>? Players {
             get => _players;

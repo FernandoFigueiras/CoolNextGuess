@@ -7,7 +7,7 @@ namespace CollNextGuess.Infrastructure.Dal.PostgresSql
     public class DataContext : DbContext
     {
         public DbSet<Player> Players { get; set; }
-        public DbSet<Game> GamePlays { get; set; }
+        public DbSet<GamePlay> GamePlays { get; set; }
         public DataContext(DbContextOptions options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder builder)

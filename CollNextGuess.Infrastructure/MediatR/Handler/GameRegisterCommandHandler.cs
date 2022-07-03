@@ -5,6 +5,7 @@ using CollNextGuess.Infrastructure.Response;
 using CollNextGuess.Infrastructure.Services.BuildDeckService;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace CollNextGuess.Infrastructure.MediatR.Handler
 {
@@ -43,6 +44,7 @@ namespace CollNextGuess.Infrastructure.MediatR.Handler
                 playerNames.Add(request.model.PlayerThreeName);
                 playerNames.Add(request.model.PlayerFourName);
                 var GamePlay = new GamePlay(request.model.NumberOfPlayers > 0? request.model.NumberOfPlayers: 1, playerNames);
+                GamePlay.DeckAtPlay = JsonConvert.SerializeObject(GamePlay.InGameCardDeck);
                 if (GamePlay is null)
                 {
                     response.IsValid = false;
